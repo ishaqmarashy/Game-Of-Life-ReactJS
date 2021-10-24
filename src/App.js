@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
-const row =40;
-const col =90;
+const row =48;
+const col =110;
 const speed =100;
 const neighbors = [[1, 1],[-1, 1],[1, -1], [-1, -1],[1, 0],[-1, 0],[0, 1],[0, -1]];
 
@@ -15,25 +15,27 @@ class Grid extends React.Component {
       row:props.row,
       col:props.col,
       age:0,  
-      speed: props.speed? props.speed: 500
+      speed: props.speed? props.speed: 100
     };
     this.startstop = this.startstop.bind(this);
-    this.increment = this.increment.bind(this);
+    this.toggleCell = this.toggleCell.bind(this);
     this.run = this.run.bind(this);
     this.rand = this.rand.bind(this);
     this.reset = this.reset.bind(this);
   }
 
-  increment(e){
+  toggleCell(e){
     let x=e.target.getAttribute('x')
     let y=e.target.getAttribute('y')
     let ar=this.state.cells
     ar[x][y]=ar[x][y]===0?1:0
     this.setState({cells:ar})
   }
+
   rand(){
     this.setState({cells: this.generateRandomGrid(this.state.row,this.state.col),age:0})
   }
+
   reset(){
     this.setState({cells: this.generateEmptyGrid(this.state.row,this.state.col),age:0})
     if(this.state.running)
@@ -50,7 +52,7 @@ class Grid extends React.Component {
         for (let n=0; n<neighbors.length; n++){
           let yindx= neighbors[n][1]+y
           let xindx= neighbors[n][0]+x
-          if(xindx>-1&&yindx>-1&&xindx<row&&yindx<col&&old[xindx][yindx]>=1 )
+          if(xindx>-1&&yindx>-1&&xindx<row&&yindx<col&&old[xindx][yindx]>0 )
             count+=1
         }
       
@@ -58,9 +60,9 @@ class Grid extends React.Component {
           ar[x][y]=0
         //acts like a live cell but could be 1 - 3 i can use this for css colors
         else if (count===3&&old[x][y]===0)
-          ar[x][y]=count
-        else if (old[x][y]>0)
-          ar[x][y]=count
+          ar[x][y]=1
+        // else if (old[x][y]>0)
+        //   ar[x][y]=count
         
       }
     }
@@ -92,6 +94,7 @@ class Grid extends React.Component {
     }
     return rows;
   };
+
   generateEmptyGrid = (row,col) => {
     const rows = [];
     for (let y = 0; y < row; y++) {
@@ -112,6 +115,7 @@ class Grid extends React.Component {
             <button key='btn2' className={this.state.running? 'stop':'start'} onClick={this.rand}>Randomize</button>
             <button key='btn3' className={this.state.running? 'stop':'start'} onClick={this.reset}>Clear</button>
             </div>
+            <div>
             <div className='displayblock' key='displayblock'>
             {
               
@@ -119,11 +123,11 @@ class Grid extends React.Component {
                    <div className='button_row' key={'button_row'+x}>
                      
                         {
-                        rows.map((v,y)=><button x={x} y={y} key={y +','+ x} className={'cell'+v} onClick={this.increment} value={v}>{v}</button>)
+                        rows.map((v,y)=><button x={x} y={y} key={y +','+ x} className={'cell'+v} onClick={this.toggleCell} >.</button>)
                         }
                     </div>)
            }</div>
-          
+            </div>
             </>
       )
   }

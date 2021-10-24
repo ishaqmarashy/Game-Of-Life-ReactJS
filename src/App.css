@@ -1,23 +1,22 @@
-
+*{
+  border:0px 
+}
 .App{
   text-align: center;
 }
-div{line-height:0;}
-.displayblock{
-  position: relative;
-  display:inline-block;
+.displayblock,.buttons_container{
+ display:inline-block;
   padding:  auto;
+  width: auto;
+  line-height:0;
 }
 .button_row,.cell0,.cell1,.cell2,.cell3
 {
-  
-  border:0;
-  margin:0;
   width: auto;
-  height: auto;
-  margin:0px;outline:none;
-  
-  padding:  auto;
+  height: 15px;
+  margin:0px;
+  outline:none;
+  padding: auto;
   background: rgb(192, 192, 192);
 }
 
@@ -26,8 +25,8 @@ div{line-height:0;}
   color: rgb(200,200,200);
 }
 .cell1{
-  background: rgb(119, 25, 25);
-  color: rgb(119, 25, 25);
+  background: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 .cell2{
   background:  rgb(0, 0, 0);;
@@ -45,8 +44,4 @@ div{line-height:0;}
   background: rgb(255, 38, 0);
   border: 1px solid rgb(0, 0, 0);
 }
-.buttons_container {
-  text-align: center;
-}
-
 

@@ -6,7 +6,6 @@
 }
 .displayblock,.buttons_container{
  display:inline-block;
-  padding:  auto;
   width: auto;
   line-height:0;
 }
@@ -28,6 +27,7 @@
   background: rgb(0, 0, 0);
   color: rgb(0, 0, 0);
 }
+/* 
 .cell2{
   background:  rgb(0, 0, 0);;
   color:  rgb(0, 0, 0);
@@ -35,7 +35,7 @@
 .cell3{
   background: rgb(0, 0, 0);
   color: rgb(0, 0, 0);
-}
+} */
 .start {
   background: rgb(0, 255, 221);
   border: 1px solid rgb(0, 0, 0);

@@ -1,22 +1,23 @@
-*{
-  border:0px 
+
+
+.displayblock {
+ display:block;
+ flex-direction: column;
+ width: 1400px;
+ margin: 0 auto;
 }
-.App{
-  text-align: center;
+.buttons_container,.button_row{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.displayblock,.buttons_container{
- display:inline-block;
-  width: auto;
-  line-height:0;
-}
-.button_row,.cell0,.cell1,.cell2,.cell3
+.button_row>*,.cell0,.cell1
 {
-  width: auto;
-  height: 15px;
-  margin:0px;
-  outline:none;
-  padding: auto;
+
+  height:15px;
   background: rgb(192, 192, 192);
+  flex:1;
+  border:0px ; 
 }
 
 .cell0{
@@ -27,21 +28,14 @@
   background: rgb(0, 0, 0);
   color: rgb(0, 0, 0);
 }
-/* 
-.cell2{
-  background:  rgb(0, 0, 0);;
-  color:  rgb(0, 0, 0);
-}
-.cell3{
-  background: rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-} */
+
 .start {
   background: rgb(0, 255, 221);
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(200,200,200);
+  
 }
 .stop {
   background: rgb(255, 38, 0);
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(200,200,200);
 }
 

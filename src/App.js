@@ -1,21 +1,20 @@
 import './App.css';
 import React from 'react';
-const row =48;
-const col =110;
+const row =50;
+const col =100;
 const speed =100;
 const neighbors = [[1, 1],[-1, 1],[1, -1], [-1, -1],[1, 0],[-1, 0],[0, 1],[0, -1]];
 
 class Grid extends React.Component {
   constructor(props) {    
     super(props);    
-    
     this.state = {      
       cells:this.generateEmptyGrid(props.row,props.col)  ,
       running:false,
       row:props.row,
       col:props.col,
       age:0,  
-      speed: props.speed? props.speed: 100
+      speed: props.speed || 100
     };
     this.startstop = this.startstop.bind(this);
     this.toggleCell = this.toggleCell.bind(this);
@@ -41,6 +40,7 @@ class Grid extends React.Component {
     if(this.state.running)
       this.startstop()
   }
+
   run(){
     let ar=[]
     let old=this.state.cells
@@ -49,6 +49,7 @@ class Grid extends React.Component {
     for(let x=0; x<row; x++){
       for(let y=0; y<col; y++){
         let count=0
+       
         for (let n=0; n<neighbors.length; n++){
           let yindx= neighbors[n][1]+y
           let xindx= neighbors[n][0]+x
@@ -63,14 +64,10 @@ class Grid extends React.Component {
           ar[x][y]=1
         // else if (old[x][y]>0)
         //   ar[x][y]=count
-        
       }
     }
     this.setState({cells:ar , age:this.state.age+1})
-
   }
-
-
 
   startstop(){
     if(!this.state.running){
@@ -107,38 +104,29 @@ class Grid extends React.Component {
     return rows;
   };
   
- 
   render (){
     return (<>
             <div className="buttons_container" key="buttons_container">
-            <button key='btn1' className={this.state.running? 'start': 'stop'} onClick={this.startstop}>Generation: {this.state.age}</button>
-            <button key='btn2' className={this.state.running? 'stop':'start'} onClick={this.rand}>Randomize</button>
-            <button key='btn3' className={this.state.running? 'stop':'start'} onClick={this.reset}>Clear</button>
-            </div>
-            <div>
+              <button  key='btn1' className={this.state.running? 'start': 'stop'} onClick={this.startstop}>Generation: {this.state.age}</button>
+              <button  key='btn2' className={this.state.running? 'stop':'start'} onClick={this.rand}>Randomize</button>
+              <button  key='btn3' className={this.state.running? 'stop':'start'} onClick={this.reset}>Clear</button>
+              </div>
             <div className='displayblock' key='displayblock'>
             {
-              
                 this.state.cells.map((rows,x)=> 
                    <div className='button_row' key={'button_row'+x}>
-                     
                         {
-                        rows.map((v,y)=><button x={x} y={y} key={y +','+ x} className={'cell'+v} onClick={this.toggleCell} >.</button>)
+                        rows.map((v,y)=><button x={x} y={y} key={y +','+ x} className={'cell'+v} onClick={this.toggleCell} ></button>)
                         }
                     </div>)
            }</div>
-            </div>
             </>
       )
   }
 }
 
 function App() {
-    return (
-    <div className="App" key='appdiv'>
-        <Grid row={row} col={col} speed={speed} />    
-    </div>
-  );
+    return   <Grid row={row} col={col} speed={speed} />    
 }
 
 export default App;

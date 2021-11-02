@@ -9,7 +9,7 @@ class Grid extends React.Component {
   constructor(props) {    
     super(props);    
     this.state = {      
-      cells:this.generateEmptyGrid(props.row,props.col)  ,
+      cells:this.generateRandomGrid(props.row,props.col)  ,
       running:false,
       row:props.row,
       col:props.col,
